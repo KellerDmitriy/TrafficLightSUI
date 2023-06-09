@@ -46,6 +46,27 @@ struct ContentView: View {
                             .overlay(RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color.white, lineWidth: 2))
                     }
+                })
+                {
+                    if currentText == "START" {
+                        Text(currentText)
+                            .font(.largeTitle)
+                            .foregroundColor(.white.opacity(0.5))
+                            .frame(width: 150, height: 50)
+                            .background(.blue)
+                            .cornerRadius(15)
+                            .overlay(RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.white.opacity(0.5), lineWidth: 1.5))
+                    } else {
+                        Text(currentText)
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .frame(width: 150, height: 50)
+                            .background(.blue)
+                            .cornerRadius(15)
+                            .overlay(RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.white, lineWidth: 2))
+                    }
                 }
                 .padding(.bottom, 20)
             }
