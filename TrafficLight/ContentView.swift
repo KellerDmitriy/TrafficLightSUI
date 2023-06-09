@@ -15,7 +15,6 @@ struct ContentView: View {
     @State private var yellowLightCondition: Condition = .lightIsOff
     @State private var greenLightCondition: Condition = .lightIsOff
     
-    
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
@@ -46,33 +45,12 @@ struct ContentView: View {
                             .overlay(RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color.white, lineWidth: 2))
                     }
-                })
-                {
-                    if currentText == "START" {
-                        Text(currentText)
-                            .font(.largeTitle)
-                            .foregroundColor(.white.opacity(0.5))
-                            .frame(width: 150, height: 50)
-                            .background(.blue)
-                            .cornerRadius(15)
-                            .overlay(RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.white.opacity(0.5), lineWidth: 1.5))
-                    } else {
-                        Text(currentText)
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .frame(width: 150, height: 50)
-                            .background(.blue)
-                            .cornerRadius(15)
-                            .overlay(RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.white, lineWidth: 2))
-                    }
                 }
                 .padding(.bottom, 20)
             }
         }
     }
-         
+    
     private func switchColor() {
         
         if currentText == "START" {
@@ -102,3 +80,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
