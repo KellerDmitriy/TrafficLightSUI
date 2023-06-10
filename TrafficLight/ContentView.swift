@@ -7,70 +7,82 @@
 
 import SwiftUI
 
+enum LightState {
+    case on, off
+    
+    var opacity: Double {
+        switch self {
+        case .on:
+            return 1.0
+        case .off:
+            return 0.2
+        }
+    }
+}
+
+enum LightColor {
+    case red, yellow, green
+}
+
 struct ContentView: View {
     @State private var currentText = "START"
-    @State private var currentLight = Color.red
+    @State private var currentLight = LightColor.red
     
-    @State private var redLightCondition: Condition = .lightIsOff
-    @State private var yellowLightCondition: Condition = .lightIsOff
-    @State private var greenLightCondition: Condition = .lightIsOff
+    @State private var redLightState: LightState = .off
+    @State private var yellowLightState: LightState = .off
+    @State private var greenLightState: LightState = .off
     
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
             VStack(spacing: 20){
-                CircleView(color: .red, condition: redLightCondition)
-                CircleView(color: .yellow, condition: yellowLightCondition)
-                CircleView(color: .green, condition: greenLightCondition)
+                CircleView(color: .red, state: redLightState)
+                CircleView(color: .yellow, state: yellowLightState)
+                CircleView(color: .green, state: greenLightState)
                 
-                Spacer()
-                
+                .padding(.bottom, 50)
                 Button(action: switchColor) {
                     if currentText == "START" {
-                        Text(currentText)
-                            .font(.largeTitle)
-                            .foregroundColor(.white.opacity(0.5))
-                            .frame(width: 150, height: 50)
-                            .background(.blue)
-                            .cornerRadius(15)
-                            .overlay(RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.white.opacity(0.5), lineWidth: 1.5))
+                        buttonStyle(text: currentText, opacity: 0.5)
                     } else {
-                        Text(currentText)
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .frame(width: 150, height: 50)
-                            .background(.blue)
-                            .cornerRadius(15)
-                            .overlay(RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.white, lineWidth: 2))
+                        buttonStyle(text: currentText, opacity: 1.0)
                     }
                 }
-                .padding(.bottom, 20)
             }
         }
     }
     
+    private func buttonStyle(text: String, opacity: Double) -> some View {
+        Text(text)
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .frame(width: 150, height: 50)
+            .background(.blue)
+            .cornerRadius(15)
+            .opacity(opacity)
+            .overlay(RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.white.opacity(opacity), lineWidth: 2))
+    }
+    
     private func switchColor() {
-        
-        if currentText == "START" {
-            currentText = "NEXT"
-        }
-        
         switch currentLight {
         case .red:
-            greenLightCondition = .lightIsOff
-            redLightCondition = .lightIsOn
+            greenLightState = .off
+            redLightState = .on
             currentLight = .yellow
             
         case .yellow:
-            redLightCondition = .lightIsOff
-            yellowLightCondition = .lightIsOn
+            redLightState = .off
+            yellowLightState = .on
             currentLight = .green
         default:
-            yellowLightCondition = .lightIsOff
-            greenLightCondition = .lightIsOn
+            yellowLightState = .off
+            greenLightState = .on
             currentLight = .red
+        }
+        
+        if currentText == "START" {
+            currentText = "NEXT"
         }
     }
 }
