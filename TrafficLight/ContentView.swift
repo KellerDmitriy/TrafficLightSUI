@@ -7,82 +7,41 @@
 
 import SwiftUI
 
-enum LightState {
-    case on, off
-    
-    var opacity: Double {
-        switch self {
-        case .on:
-            return 1.0
-        case .off:
-            return 0.2
-        }
-    }
-}
-
-enum LightColor {
-    case red, yellow, green
+enum CurrentLight {
+    case off, red, yellow, green
 }
 
 struct ContentView: View {
-    @State private var currentText = "START"
-    @State private var currentLight = LightColor.red
-    
-    @State private var redLightState: LightState = .off
-    @State private var yellowLightState: LightState = .off
-    @State private var greenLightState: LightState = .off
+    @State private var buttonTitle = "START"
+    @State private var currentLight: CurrentLight = .off
     
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
-            VStack(spacing: 20){
-                CircleView(color: .red, state: redLightState)
-                CircleView(color: .yellow, state: yellowLightState)
-                CircleView(color: .green, state: greenLightState)
+            Color.black.ignoresSafeArea()
+            VStack(spacing: 28){
+                CircleView(color: .red, opacity: currentLight == .red ? 1 : 0.3)
+                CircleView(color: .yellow, opacity: currentLight == .yellow ? 1 : 0.3)
+                CircleView(color: .green, opacity: currentLight == .green ? 1 : 0.3)
                 
-                .padding(.bottom, 50)
-                Button(action: switchColor) {
-                    if currentText == "START" {
-                        buttonStyle(text: currentText, opacity: 0.5)
-                    } else {
-                        buttonStyle(text: currentText, opacity: 1.0)
+                Spacer()
+                StartButtonView(title: buttonTitle) {
+                    if buttonTitle == "START" {
+                        buttonTitle = "NEXT"
                     }
+                    nextColor()
                 }
             }
         }
     }
     
-    private func buttonStyle(text: String, opacity: Double) -> some View {
-        Text(text)
-            .font(.largeTitle)
-            .foregroundColor(.white)
-            .frame(width: 150, height: 50)
-            .background(.blue)
-            .cornerRadius(15)
-            .opacity(opacity)
-            .overlay(RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.white.opacity(opacity), lineWidth: 2))
-    }
     
-    private func switchColor() {
+    private func nextColor() {
         switch currentLight {
-        case .red:
-            greenLightState = .off
-            redLightState = .on
-            currentLight = .yellow
+        case .off: currentLight = .red
+        case .red: currentLight = .yellow
+        case .yellow: currentLight = .green
+        case .green: currentLight = .red
             
-        case .yellow:
-            redLightState = .off
-            yellowLightState = .on
-            currentLight = .green
-        default:
-            yellowLightState = .off
-            greenLightState = .on
-            currentLight = .red
-        }
-        
-        if currentText == "START" {
-            currentText = "NEXT"
         }
     }
 }

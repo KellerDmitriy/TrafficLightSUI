@@ -11,6 +11,7 @@
 		E1099B1C2A312AF200CBC981 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1099B1B2A312AF200CBC981 /* ContentView.swift */; };
 		E1099B1E2A312AF300CBC981 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1099B1D2A312AF300CBC981 /* Assets.xcassets */; };
 		E1099B212A312AF300CBC981 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1099B202A312AF300CBC981 /* Preview Assets.xcassets */; };
+		E1E7D0602A3F57F000462F1C /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7D05F2A3F57F000462F1C /* StartButtonView.swift */; };
 		E1F906D12A331FC700FCADCD /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F906D02A331FC700FCADCD /* CircleView.swift */; };
 /* End PBXBuildFile section */
 
@@ -20,6 +21,7 @@
 		E1099B1B2A312AF200CBC981 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E1099B1D2A312AF300CBC981 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1099B202A312AF300CBC981 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E1E7D05F2A3F57F000462F1C /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
 		E1F906D02A331FC700FCADCD /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +58,7 @@
 				E1099B192A312AF200CBC981 /* TrafficLightApp.swift */,
 				E1099B1B2A312AF200CBC981 /* ContentView.swift */,
 				E1F906D02A331FC700FCADCD /* CircleView.swift */,
+				E1E7D05F2A3F57F000462F1C /* StartButtonView.swift */,
 				E1099B1D2A312AF300CBC981 /* Assets.xcassets */,
 				E1099B1F2A312AF300CBC981 /* Preview Content */,
 			);
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1F906D12A331FC700FCADCD /* CircleView.swift in Sources */,
+				E1E7D0602A3F57F000462F1C /* StartButtonView.swift in Sources */,
 				E1099B1C2A312AF200CBC981 /* ContentView.swift in Sources */,
 				E1099B1A2A312AF200CBC981 /* TrafficLightApp.swift in Sources */,
 			);
